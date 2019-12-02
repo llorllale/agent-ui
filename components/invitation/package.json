@@ -1,8 +1,12 @@
 {
   "name": "@trustbloc/invitation",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "publishConfig": {
     "access": "public"
   },
-  "main": "./index.js"
+  "main": "./index.js",
+  "repository" : {
+    "type" : "git",
+    "url": "ssh://git@github.com:trustbloc/agent-ui.git"
+  }
 }
