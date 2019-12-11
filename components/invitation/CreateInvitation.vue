@@ -4,7 +4,7 @@ Copyright SecureKey Technologies Inc. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 <template>
-    <div id="invitationDiv">
+    <div id="createInvitationDiv">
     <h1>Invitation</h1>
     <textarea  rows="10" cols="80" readonly>{{ invitationData }}</textarea>
     <br/>
