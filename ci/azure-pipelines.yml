@@ -11,7 +11,6 @@ jobs:
       vmImage: ubuntu-18.04
     timeoutInMinutes: 30
     steps:
-      - template: azp-dependencies.yml
       - checkout: self
       - bash: |
           function logout {
@@ -20,6 +19,8 @@ jobs:
           trap logout EXIT
           source ci/version_var.sh
           sed -i 's/$VERSION/'$COMPONENT_VERSION'/g' components/invitation/package.json
+          git update-index --assume-unchanged components/invitation/package.json
+          sudo npm install --g lerna
           lerna publish from-package --no-git-tag-version --yes
         env:
           NPM_TOKEN: $(NPM_TOKEN)
