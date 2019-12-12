@@ -1,6 +1,6 @@
 {
   "name": "@trustbloc/invitation",
-  "version": "0.0.12",
+  "version": "$VERSION",
   "publishConfig": {
     "access": "public"
   },

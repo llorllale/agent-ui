@@ -1,0 +1,25 @@
+# Copyright SecureKey Technologies Inc. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+
+name: $(SourceBranchName)-$(Date:yyyyMMdd).$(Rev:r)
+jobs:
+  - job: Publish
+    condition: ne(variables['Build.Reason'], 'PullRequest')
+    pool:
+      vmImage: ubuntu-18.04
+    timeoutInMinutes: 30
+    steps:
+      - template: azp-dependencies.yml
+      - checkout: self
+      - bash: |
+          function logout {
+            npm logout
+          }
+          trap logout EXIT
+          source ci/version_var.sh
+          sed -i 's/$VERSION/'$COMPONENT_VERSION'/g' components/invitation/package.json
+          lerna publish from-package --no-git-tag-version --yes
+        env:
+          NPM_TOKEN: $(NPM_TOKEN)
